@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class Phone {
     // initialize variables
-    String phoneType;
-    String phoneNumber;
+    private static String phoneType;
+    private static String phoneNumber;
     private static Map<String, List<String>> phones = new HashMap<String, List<String>>();
     // I want to do this: self.phones = {"Mobile": [], "Home": [], "Work": []}
     private static List<String> mobilePhones = new ArrayList<>();
@@ -20,10 +20,8 @@ public class Phone {
     // public or private??
     // constructor or main? is main mandatory?
     private Phone (String inputPhoneType, String inputPhoneNumber){
-        phoneType = "Mobile";
-        phoneType = inputPhoneType;
-        phoneNumber = "";
-        phoneNumber = inputPhoneNumber;
+        this.phoneType = inputPhoneType;
+        this.phoneNumber = inputPhoneNumber;
         phones.put("Mobile", mobilePhones);
         phones.put("Home", homePhones);
         phones.put("Work", workPhones);
