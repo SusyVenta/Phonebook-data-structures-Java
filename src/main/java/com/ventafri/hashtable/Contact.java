@@ -3,29 +3,30 @@ package com.ventafri.hashtable;
 import com.ventafri.Common.Address;
 import com.ventafri.Common.Email;
 import com.ventafri.Common.Phone;
+import GoogleGuava.xml; /** how to import libraries?? **/
 
 public class Contact {
     private static String firstName = "";
     private static String surname = "";
-    private static Phone phone;
-    private static Address address;
-    private static Email emailAddress;
+    private static Phone phone = new Phone();
+    private static Address address = new Address();
+    private static Email email = new Email();
 
     private Contact (String inputName, String inputSurname){
-        this.firstName = inputName;
-        this.surname = inputSurname;
-        this.address = new Address();
-        this.emailAddress = new Email();
+        if (!(inputSurname.isEmpty() || inputSurname == "")){
+            surname = inputSurname;
+        }
+        firstName = inputName;
     }
 
-    public String getAllContactDetails (){
+    public String getAllContactDetails(){
         StringBuilder contactInfo = new StringBuilder();
-        contactInfo.append(firstName).append(surname).append(Phone.getAllPhones()).append(Address.getAllAddresses
-        ).append(Email.getAllEmailAddresses).toString();
+        contactInfo.append(firstName).append(" ").append(surname).append(":\n").append(phone.getAllPhones()).append(
+        address.getAllAddresses()).append(email.getEmails()).toString();
         return contactInfo;
     }
 
-    public String getName(){
+    public String getFirstName(){
         return firstName;
     }
 
@@ -34,17 +35,19 @@ public class Contact {
     }
 
     public String getNameAndSurname(){
-        if (surname == ""){
+        if(!(surname.isEmpty() || surname == "")){
+            return firstName + " " + surname;
+        } else{
             return firstName;
         }
-        return firstName + " " + surname;
     }
 
     public void setSurname(String inputSurname){
         surname = inputSurname;
     }
 
-    public void setName(String inputName){
-         firstName = inputName;
+    public void setFirstName(String inputName){
+        firstName = inputName;
     }
+
 }
